@@ -27,12 +27,12 @@ func resolveLogLevel(levelName string) zapcore.Level {
 	}
 }
 
-func CreateLogger(logDir string, loggerName string, levelName string, maxAgeDays int, rotationDays int) (*zap.SugaredLogger, error) {
+func CreateLogger(logDir string, loggerName string, levelName string) (*zap.SugaredLogger, error) {
 	logFile := logDir + "/%Y-%m-%d/" + loggerName + ".json"
 	rotator, err := rotatelogs.New(
 		logFile,
-		rotatelogs.WithMaxAge(time.Duration(maxAgeDays)*24*time.Hour),
-		rotatelogs.WithRotationTime(time.Duration(rotationDays)*24*time.Hour))
+		rotatelogs.WithMaxAge(60*24*time.Hour),
+		rotatelogs.WithRotationTime(24*time.Hour))
 	if err != nil {
 		return nil, err
 	}
