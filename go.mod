@@ -1,4 +1,4 @@
-module github.com/altatec-sources/go-paws-logger-avv
+module github.com/AlexeyVasiliev/go-paws-logger-avv
 
 go 1.18
 
