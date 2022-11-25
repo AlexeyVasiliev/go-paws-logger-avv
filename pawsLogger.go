@@ -27,7 +27,7 @@ func resolveLogLevel(levelName string) zapcore.Level {
 	}
 }
 
-func CreateLogger(logDir string, loggerName string, levelName string) (*zap.SugaredLogger, error) {
+func CreateLogger(logDir string, loggerName string, levelName string) (*zap.Logger, error) {
 	logFile := logDir + "/%Y-%m-%d/" + loggerName + ".json"
 	rotator, err := rotatelogs.New(
 		logFile,
@@ -44,6 +44,5 @@ func CreateLogger(logDir string, loggerName string, levelName string) (*zap.Suga
 		w,
 		resolveLogLevel(levelName))
 	logger := zap.New(core)
-	sugar := logger.Sugar()
-	return sugar, nil
+	return logger, nil
 }
